@@ -1,3 +1,5 @@
+import { BackendStatus } from "@/components/system/backend-status";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -39,9 +41,11 @@ export default function Home() {
             <p className="text-sm font-medium text-emerald-300">
               Agentic Intelligence
             </p>
+
             <h2 className="mt-3 text-xl font-semibold">
               Coordinated AI Analysis
             </h2>
+
             <p className="mt-3 leading-7 text-slate-400">
               Specialized agents collaborate to understand requirements,
               retrieve evidence, evaluate feasibility, analyse scenarios, and
@@ -53,9 +57,11 @@ export default function Home() {
             <p className="text-sm font-medium text-emerald-300">
               Evidence Grounding
             </p>
+
             <h2 className="mt-3 text-xl font-semibold">
               Hybrid Information Retrieval
             </h2>
+
             <p className="mt-3 leading-7 text-slate-400">
               Technical recommendations are grounded using trusted renewable
               energy documents, semantic retrieval, lexical search, ranking,
@@ -67,9 +73,11 @@ export default function Home() {
             <p className="text-sm font-medium text-emerald-300">
               Responsible AI
             </p>
+
             <h2 className="mt-3 text-xl font-semibold">
               Explainable Recommendations
             </h2>
+
             <p className="mt-3 leading-7 text-slate-400">
               Results distinguish evidence, calculations, assumptions,
               uncertainty, missing information, limitations, and confidence.
@@ -77,21 +85,7 @@ export default function Home() {
           </article>
         </div>
 
-        <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <p className="text-sm text-slate-500">Platform status</p>
-              <p className="mt-1 font-medium text-slate-200">
-                Frontend foundation operational
-              </p>
-            </div>
-
-            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-sm text-emerald-300">
-              <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              Web application online
-            </span>
-          </div>
-        </div>
+        <BackendStatus />
 
         <p className="mt-8 max-w-3xl text-sm leading-6 text-slate-500">
           EnerWise AI provides preliminary AI-assisted renewable-energy
