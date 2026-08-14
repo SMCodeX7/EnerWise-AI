@@ -10,7 +10,11 @@ class Settings(BaseSettings):
 
     api_v1_prefix: str = "/api/v1"
 
-    backend_cors_origins: list[str] = ["http://localhost:3000"]
+    backend_cors_origins: list[str] = [
+        "http://localhost:3000",
+    ]
+
+    database_url: str
 
     model_config = SettingsConfigDict(
         env_file=".env",
