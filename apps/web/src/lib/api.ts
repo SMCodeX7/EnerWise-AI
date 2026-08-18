@@ -8,6 +8,8 @@ export interface BackendHealth {
 export interface BackendAuthenticatedUser {
   id: string;
   email: string | null;
+  full_name: string | null;
+  role: "USER" | "ADMIN";
 }
 
 const API_BASE_URL =
