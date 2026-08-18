@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { logout } from "@/app/auth/actions";
+import { getBackendCurrentUser } from "@/lib/api";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function DashboardPage() {
@@ -14,6 +15,26 @@ export default async function DashboardPage() {
   }
 
   const userId = claimsData.claims.sub;
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session?.access_token) {
+    redirect("/login");
+  }
+
+  let backendAuthenticated = false;
+
+  try {
+    const backendUser = await getBackendCurrentUser(
+      session.access_token,
+    );
+
+    backendAuthenticated = backendUser.id === userId;
+  } catch {
+    backendAuthenticated = false;
+  }
 
   const { data: profile } = await supabase
     .from("profiles")
@@ -85,16 +106,37 @@ export default async function DashboardPage() {
 
             <dl className="mt-5 space-y-4 text-sm">
               <div>
-                <dt className="text-slate-500">Email</dt>
+                <dt className="text-slate-500">
+                  Email
+                </dt>
                 <dd className="mt-1 break-all text-slate-200">
                   {email}
                 </dd>
               </div>
 
               <div>
-                <dt className="text-slate-500">Role</dt>
+                <dt className="text-slate-500">
+                  Role
+                </dt>
                 <dd className="mt-1 text-slate-200">
                   {profile?.role ?? "USER"}
+                </dd>
+              </div>
+
+              <div>
+                <dt className="text-slate-500">
+                  Backend authentication
+                </dt>
+                <dd className="mt-1">
+                  {backendAuthenticated ? (
+                    <span className="text-emerald-400">
+                      Verified
+                    </span>
+                  ) : (
+                    <span className="text-red-400">
+                      Unavailable
+                    </span>
+                  )}
                 </dd>
               </div>
             </dl>
